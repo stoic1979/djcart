@@ -1,0 +1,2 @@
+# djcart
+Django shopping cart
