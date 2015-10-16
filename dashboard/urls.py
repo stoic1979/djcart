@@ -17,9 +17,16 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 urlpatterns = [
+    # admin
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/', include(admin.site.urls)),
+
+    # frontend
     url(r'^$', 'cart.views.home', name='home'),
+    url(r'category/(\d+)$', 'product.views.show_category', name='show_category'),
+    url(r'products/(\d+)$', 'product.views.show_products', name='show_products'),
+
+    # auth
     url(r'^login/$', 'cart.views.login_page', name='login_page'),
     url(r'^logout/$', 'cart.views.logout_page', name='logout_page'),
     url(r'^accounts/logout/$', 'cart.views.logout_page', name='logout_page'),

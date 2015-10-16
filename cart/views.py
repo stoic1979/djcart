@@ -19,7 +19,23 @@ def home(request):
     """
     home page view for the website
     """
-    return render_to_response('index.html')
+    categories = Category.objects.all()
+    return show_category(request, categories[0].id)
+
+def show_category(request, catid=None):
+    """
+    category list page view for the website
+    """
+    sub_categories = []
+    try:
+        if catid:
+            category = Category.objects.get(id=catid)
+            products = Product.objects.filter(category=category)
+    except:
+        pass
+
+    c = {'categories': Category.objects.all(), 'products': products}
+    return render_to_response('index.html', c)
 
 def login_page(request):
     """
