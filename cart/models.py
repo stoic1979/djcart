@@ -138,3 +138,19 @@ class Review(models.Model):
 
     def __unicode__(self):
         return "%s with Rating: %d" % (self.product, self.rating)
+
+
+class Cart(models.Model):
+    creation_date = models.DateTimeField()
+    checked_out   = models.BooleanField(default=False)
+
+    def __unicode__(self):
+        return unicode(self.creation_date)
+
+class CartItem(models.Model):
+    cart     = models.ForeignKey(Cart)
+    quantity = models.PositiveIntegerField()
+    product  = models.ForeignKey(Product)
+
+    def __unicode__(self):
+        return unicode( "Cart Item for " % (self.product.name) )
