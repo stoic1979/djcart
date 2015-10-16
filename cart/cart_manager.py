@@ -9,7 +9,10 @@ class ItemAlreadyExists(Exception):
 class ItemDoesNotExist(Exception):
     pass
 
-class Cart:
+class CartManager:
+
+    cart = None
+
     def __init__(self, request):
         cart_id = request.session.get(CART_ID)
         if cart_id:
