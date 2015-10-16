@@ -20,13 +20,15 @@ def home(request):
     home page view for the website
     """
     categories = Category.objects.all()
+    if not categories:
+        return show_category(request)
     return show_category(request, categories[0].id)
 
 def show_category(request, catid=None):
     """
     category list page view for the website
     """
-    sub_categories = []
+    products = []
     try:
         if catid:
             category = Category.objects.get(id=catid)
