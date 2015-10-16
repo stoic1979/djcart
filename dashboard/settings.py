@@ -34,6 +34,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    # NOTE:third party apps grappelli should be added before adding admin
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -116,3 +118,6 @@ STATICFILES_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(PROJECT_DIR, 'templates/static'),
 )
+
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'templates')
+print "STATIC_ROOT: ", STATIC_ROOT
