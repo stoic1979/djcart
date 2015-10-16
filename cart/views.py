@@ -11,7 +11,7 @@ from cart.models import *
 from dashboard.forms import LoginForm
 from django.core.context_processors import csrf
 
-from cart import CartManager
+from cart.cart_manager import CartManager
 from cart.models import *
 
 @login_required
