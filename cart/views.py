@@ -39,6 +39,7 @@ def show_category(request, catid=None):
     c = {'categories': Category.objects.all(), 'products': products}
     return render_to_response('index.html', c)
 
+
 def login_page(request):
     """
     If user is authenticated, direct them to the next page. 

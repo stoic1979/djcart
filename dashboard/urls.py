@@ -23,8 +23,7 @@ urlpatterns = [
 
     # frontend
     url(r'^$', 'cart.views.home', name='home'),
-    url(r'category/(\d+)$', 'product.views.show_category', name='show_category'),
-    url(r'products/(\d+)$', 'product.views.show_products', name='show_products'),
+    url(r'category/(\d+)$', 'cart.views.show_category', name='show_category'),
 
     # auth
     url(r'^login/$', 'cart.views.login_page', name='login_page'),
