@@ -11,6 +11,9 @@ from cart.models import *
 from dashboard.forms import LoginForm
 from django.core.context_processors import csrf
 
+from cart import CartManager
+from cart.models import *
+
 @login_required
 def home(request):
     """
@@ -64,3 +67,17 @@ def logout_page(request):
     """ Log users out and re-direct them to the main page. """
     logout(request)
     return HttpResponseRedirect('/login/', {'request':request})
+
+
+def add_to_cart(request, product_id, quantity):
+    product = Product.objects.get(id=product_id)
+    cm = CartManager(request)
+    cm.add(product, product.unit_price, quantity)
+
+def remove_from_cart(request, product_id):
+    product = Product.objects.get(id=product_id)
+    cm = CartManager(request)
+    cm.remove(product)
+
+def get_cart(request):
+    return render_to_response('cart.html', dict(cart=CartManager(request)))
