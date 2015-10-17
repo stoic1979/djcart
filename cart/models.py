@@ -55,6 +55,7 @@ class Product(models.Model):
     price        = models.DecimalField(max_digits=10, decimal_places=2)
     currency     = models.ForeignKey(Currency)
     url          = models.CharField(max_length=1024)
+    image        = models.ImageField()
         
     def __unicode__(self):
         return self.name
