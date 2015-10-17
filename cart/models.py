@@ -10,6 +10,9 @@ class Category(models.Model):
     def __unicode__(self):
         return self.title
 
+    class Meta:
+        verbose_name_plural = "categories"
+
 class Brand(models.Model):
     """
     Brand/Manufacturer model
@@ -28,6 +31,9 @@ class Currency(models.Model):
         
     def __unicode__(self):
         return self.name
+
+    class Meta:
+        verbose_name_plural = "currencies"
 
 class Unit(models.Model):
     """
@@ -124,6 +130,9 @@ class Property(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    class Meta:
+        verbose_name_plural = "properties"
 
 class Review(models.Model):
     """
