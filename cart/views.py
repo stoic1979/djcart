@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 from cart.models import *
 from dashboard.forms import LoginForm
 from django.core.context_processors import csrf
+from django.template import RequestContext
 
 from cart.cart_manager import CartManager
 from cart.models import *
@@ -37,7 +38,7 @@ def show_category(request, catid=None):
         pass
 
     c = {'categories': Category.objects.all(), 'products': products}
-    return render_to_response('index.html', c)
+    return render_to_response('index.html', c, context_instance=RequestContext(request))
 
 
 def login_page(request):
