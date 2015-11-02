@@ -40,4 +40,7 @@ urlpatterns = [
 
     # url conf for rest framework
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+
+    # url conf for apis
+    url(r'api/categories/$', 'api.views.category_list'),
 ]
