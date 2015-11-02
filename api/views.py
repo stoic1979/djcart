@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework import status
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
+from rest_framework.response import Response
 from cart.models import *
 from cart.serializers import *
 
@@ -41,12 +43,13 @@ def product_list(request, pk):
     'pk' is the primary key of category under which
     the product list will be retrieved
     """
+    error_response = {'error': 'category not found'}
     products = []
     try:
         category = Category.objects.get(pk=pk)
         products = Product.objects.filter(category=category)
     except Category.DoesNotExist:
-        return HttpResponse(status=404)
+        return JSONResponse(error_response)
 
     if request.method == 'GET':
         serializer = ProductSerializer(products, many=True)
