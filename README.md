@@ -19,6 +19,15 @@ Unit Tests
 Setup Instructions
 --------
 
+* django rest framework
+
+ - pip install djangorestframework
+ - pip install markdown
+ - pip install django-filter
+
+ - For more details, follow django rest framework docs:-
+    http://www.django-rest-framework.org/
+
 * grappelli - for admin skinning
 
  - pip install django-grappelli
