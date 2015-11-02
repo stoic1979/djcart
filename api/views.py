@@ -37,6 +37,9 @@ def category_list(request):
 def product_list(request, pk):
     """
     Retrieve, update or delete a product.
+
+    'pk' is the primary key of category under which
+    the product list will be retrieved
     """
     products = []
     try:
