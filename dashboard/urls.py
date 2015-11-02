@@ -43,4 +43,5 @@ urlpatterns = [
 
     # url conf for apis
     url(r'api/categories/$', 'api.views.category_list'),
+    url(r'api/products/(?P<pk>[0-9]+)/$', 'api.views.product_list'),
 ]

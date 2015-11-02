@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
-from cart.models import Category
+from cart.models import *
 from cart.serializers import *
 
 class JSONResponse(HttpResponse):
@@ -32,3 +32,31 @@ def category_list(request):
             serializer.save()
             return JSONResponse(serializer.data, status=201)
         return JSONResponse(serializer.errors, status=400)
+
+@csrf_exempt
+def product_list(request, pk):
+    """
+    Retrieve, update or delete a product.
+    """
+    products = []
+    try:
+        category = Category.objects.get(pk=pk)
+        products = Product.objects.filter(category=category)
+    except Category.DoesNotExist:
+        return HttpResponse(status=404)
+
+    if request.method == 'GET':
+        serializer = ProductSerializer(products, many=True)
+        return JSONResponse(serializer.data)
+
+    elif request.method == 'PUT':
+        data = JSONParser().parse(request)
+        serializer = ProductSerializer(product, data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JSONResponse(serializer.data)
+        return JSONResponse(serializer.errors, status=400)
+
+    elif request.method == 'DELETE':
+        product.delete()
+        return HttpResponse(status=204)
