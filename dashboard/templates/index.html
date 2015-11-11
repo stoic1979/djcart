@@ -8,20 +8,38 @@
 <h4>djCART</h4><hr>
 
 <table class="table" border="0" cellspacing="5" cellpadding="5" width="100%">
-    <tr class="info">
-        <td><b>#</b></td>
-        <td><b>Project</b></td>
-        <td><b>Created By</b></td>
-        <td><b>Start Date</b></td>
-    </tr>
-    {% for project in projects %}
     <tr>
-        <td>{{ forloop.counter }}</td>
-        <td><a href="/project/{{ project.id }}">{{ project.title }}</a></td>
-        <td>{{ project.owner }}</td>
-        <td>{{ project.start_date }}</td>
+        <td>
+            <table class="table" border="0" cellspacing="5" cellpadding="5" width="100%">
+                <tr class="info"><th>Categories</th></tr>
+                <tr>
+                    <td>
+                        {% for category in categories %}
+                        {{ category.title }}<br>
+                        {% endfor %}
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <td>
+            <table class="table" border="0" cellspacing="5" cellpadding="5" width="100%">
+                <tr class="info">
+                    <td><b>#</b></td>
+                    <td><b>Project</b></td>
+                    <td><b>Created By</b></td>
+                    <td><b>Start Date</b></td>
+                </tr>
+                {% for project in projects %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td><a href="/project/{{ project.id }}">{{ project.title }}</a></td>
+                    <td>{{ project.owner }}</td>
+                    <td>{{ project.start_date }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </td>
     </tr>
-    {% endfor %}
 </table>
 
 <br> <br> <br> <br> <br> <br> <br>
