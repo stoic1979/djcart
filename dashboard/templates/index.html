@@ -5,20 +5,20 @@
 {% endblock %}
 
 {% block body %}
-<h4>djCART</h4><hr>
+<h4>djCART</h4>
 
 <table class="table" border="0" cellspacing="5" cellpadding="5" width="100%">
     <tr>
         <td>
             <table class="table" border="0" cellspacing="5" cellpadding="5" width="100%">
                 <tr class="info"><th>Categories</th></tr>
+                {% for category in categories %}
                 <tr>
                     <td>
-                        {% for category in categories %}
-                        {{ category.title }}<br>
-                        {% endfor %}
+                        <a href="/category/{{category.id}}">{{ category.title }}</a><br>
                     </td>
                 </tr>
+                {% endfor %}
             </table>
         </td>
         <td>
